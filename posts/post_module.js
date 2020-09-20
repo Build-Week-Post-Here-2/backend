@@ -7,7 +7,7 @@ module.exports = {
     add,
     remove,
     update,
-    findUserPosts
+    
 }
 
 // get all posts
@@ -44,21 +44,22 @@ function remove(id) {
 // update a post 
 function update(updating, id) {
     return findById(id).update(updating)
+    .then(()=> findById(id))
 }
 
-// get a user posts  using user Id
-function findUserPosts (id) {
-    return find()
-      .select(
-        "post.id",
-        "post.post_title",
-        "post.post_content",
-        "post.user_id",
-        "user.username"
-      )
-      .join("user", function() {
-        this.on({ "user.id": "post.user_id" });
-      })
-      .orderBy("post.id")
-      .where({ "user.id": id });
-  }
+// // get a user posts  using user Id
+// function findUserPosts (id) {
+//     return find()
+//       .select(
+//         "post.id",
+//         "post.post_title",
+//         "post.post_content",
+//         "post.user_id",
+//         "user.username"
+//       )
+//       .join("user", function() {
+//         this.on({ "user.id": "post.user_id" });
+//       })
+//       .orderBy("post.id")
+//       .where({ "user.id": id });
+//   }
