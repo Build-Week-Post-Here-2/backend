@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const helmet = require('helmet')
 const userRouter = require('../users/user_router')
-
+const postRouter = require('../posts/post_router')
 const server = express()
 
 
@@ -19,5 +19,6 @@ server.get('/', (req, res) => {
 })
 
 server.use('/api/users', userRouter)
+server.use('/api/posts', postRouter)
 
 module.exports = server

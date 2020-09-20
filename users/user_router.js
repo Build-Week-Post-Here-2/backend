@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const User = require('./user_moduel')
-const {hashing, errorHandler} = require('./users_helper')
-const jwt = require('jsonwebtoken')
+const Post =require('../posts/post_module')
+const {hashing, errorHandler, makeJwt} = require('./users_helper')
 const bcryptjs = require('bcryptjs')
 
 //get all users
@@ -23,7 +23,7 @@ router.get('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     const {id} = req.params
     User.remove(id)
-    .then(number => res.status(204).json({data: {deleteMessage: `you have deleted ${number} User/Users`}}))
+    .then(number => res.status(200).json({data: {deleteMessage: `you have deleted ${number} User/Users`}}))
     .catch(error =>  errorHandler(error, res))
 })
 
@@ -65,24 +65,25 @@ router.post('/login', (req, res) => {
     .catch(error =>  errorHandler(error, res))
 })
 
+// get all the postes that are related to a user
+router.get('/:id/posts', (req, res) => {
+    const {id} = req.params
+    User.findById(id)
+    .then(user => {
+        Post.findBy({user_id: id})
+       
+        .then(posts => {
+            const userPosts = {user, posts}
+            res.status(200).json({data: userPosts})
+        })
+    })
+    .catch(error =>  errorHandler(error, res))
+})
 
 
 
 
-// token creater function
-function makeJwt({ id, username}) {
-    const payload = {
-        username,
-         id
-    };
-    const config = {
-        jwtSecret: process.env.JWT_SECRET || "is it secret, is it safe?",
-    };
-    const options = {
-        expiresIn: "8 hours",
-    };
-  
-    return jwt.sign(payload, config.jwtSecret, options);
-  }
+
+
 
 module.exports = router
