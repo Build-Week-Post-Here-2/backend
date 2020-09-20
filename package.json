@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watch",
-    "server": "nodemon index.js"
+    "server": "nodemon index.js",
+    "back": "knex migrate:rollback",
+    "next":"knex migrate:latest",
+    "start": " node index.js"
   },
   "repository": {
     "type": "git",
