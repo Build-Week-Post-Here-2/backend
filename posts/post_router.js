@@ -39,7 +39,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     const {id} = req.params
     Post.remove(id)
-    .then(() => res.status(200).json({data: {deleteMessage: `you have deleted ${number} Post/Posts`}}))
+    .then((number) => res.status(200).json({data: {deleteMessage: `you have deleted ${number} Post/Posts`}}))
     .catch(error =>  errorHandler(error, res))
 } )
 
