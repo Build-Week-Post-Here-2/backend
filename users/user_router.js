@@ -82,7 +82,7 @@ router.get('/:id/posts', (req, res) => {
 
 
 // serching users posts 
-router.get('/:id/postSearch', (req, res) => {
+router.post('/:id/postSearch', (req, res) => {
     const {id} = req.params 
     const {post_title} = req.body
     User.findById(id)
