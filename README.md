@@ -28,7 +28,7 @@ Post request to make a new user
 }
 
 
-**Returns: Username, Password, email and a authentication token**
+**Returns: Username, Password, email and authentication token**
 
 
 {
@@ -76,6 +76,165 @@ Post request to login a user
 
     token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWQiOjEsImlhdCI6MTYwMDY1Njg3MSwiZXhwIjoxNjAwNjg1NjcxfQ.GLJtwuNNUSBqrTBN1ybgRC5iUoa_4RX-EhDrVnRbIvU"
 
+
+}
+
+
+# Posts
+
+
+**Get all posts**
+**[https://reddit-sami.herokuapp.com/api/posts]**
+
+Get request to get all the posts from the database
+
+
+**Returns: array of all the posts**
+
+{
+
+
+    data: [
+        {
+            id: 1,
+            post_title: "money",
+            post_content: "make more money",
+            user_id: 1
+        },
+        {
+            id: 2,
+            post_title: "climate change",
+            post_content: "what do you know about climate change",
+            user_id: 1
+        },
+        {
+            id: 4,
+            post_title: "coding",
+            post_content: "keep coding",
+            user_id: 2
+        }
+    ]
+
     
 }
 
+**Get post by the post ID**
+**[https://reddit-sami.herokuapp.com/api/posts/:id]**
+
+Get request to get a post by it's id from the database
+
+**Returns: the post information (id, post_title, post_content, user_id)**
+
+
+{
+
+
+    data: {
+            id: 1,
+            post_title: "money",
+            post_content: "make more money",
+            user_id: 1
+        }
+
+    
+}
+
+
+**POST Create a new post**
+**[https://reddit-sami.herokuapp.com/api/posts]**
+
+Post request to make a new post
+
+**Requires:** post_title , post_content, and user_id.
+ post_title and post_content must be string
+ user_id must be integer (number) and it must match an existing user's id 
+
+**Post request example:** 
+
+{
+
+
+    post_title: "my new post",
+    post_content: "nice post",
+    user_id: 1
+
+
+}
+
+
+**Returns: id, post_title, post_content and user_id**
+
+
+{
+
+
+    data: {
+    id: 4,
+    post_title: "my new post",
+    post_content: "nice post",
+    user_id: 1
+    }
+
+
+
+}
+
+
+**PUT update post information**
+**[https://reddit-sami.herokuapp.com/api/posts/:id]**
+
+Put request to update post information
+**Requires:** post_title and/or post_content
+
+**Post request example:** 
+
+{
+
+
+    post_title: "updating title",
+    post_content: "nice update"
+
+
+}
+
+
+**Returns: id, post_title, post_content and user_id**
+
+
+{
+
+
+    data: {
+    id: 4,
+    post_title: "updating title",
+    post_content: "nice update",
+    user_id: 1
+    }
+
+
+
+}
+
+
+**DELETE update post information**
+**[https://reddit-sami.herokuapp.com/api/posts/:id]**
+
+delete request to delete  a post 
+
+
+**Returns: the number of posts u deleted**
+
+
+{
+
+
+    data: {
+    id: 4,
+    post_title: "updating title",
+    post_content: "nice update",
+    user_id: 1
+    }
+
+
+
+}
