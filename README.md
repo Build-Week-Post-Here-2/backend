@@ -229,12 +229,83 @@ delete request to delete  a post
 
 
     data: {
-    id: 4,
-    post_title: "updating title",
-    post_content: "nice update",
-    user_id: 1
+        deleteMessage: "you have deleted 1 Post/Posts"
     }
 
 
 
+}
+
+
+# User's posts 
+
+**GET all the posts of one user using the user's id**
+**[https://reddit-sami.herokuapp.com/api/users/:id/posts]**
+
+Get request to get the post of a user using the user's ID from the database
+
+**Returns: the user information and an array of the user's posts**
+
+
+{
+
+
+    data: {
+        user: {
+            id: 2,
+            username: "user2",
+            password: "$2a$04$V2XKd4IKWfUNnEDKoSVb2uzo5gHM5t73dAAIDpEHm8l24zgzBhq2m",
+            email: "user2@gmail.com"
+        },
+        posts: [
+            {
+                id: 4,
+                post_title: "coding",
+                post_content: "keep coding",
+                user_id: 2
+            }
+        ]
+    }
+
+    
+}
+
+
+
+# Post Search
+
+**POST search for a post by the post_title**
+**[https://reddit-sami.herokuapp.com/api/users/:id/postSearch]**
+
+Post request search for a post
+**Requires:** post_title and the user's ID
+
+**Post request example:** 
+
+{
+
+
+    post_title: "tesla stock"
+    
+
+
+}
+
+
+**Returns:  an array of the user's posts that match the search**
+
+
+{
+
+
+    data: [
+        {
+            id: 3,
+            post_title: "tesla stock",
+            post_content: "Tesla, Inc. is an American electric vehicle and clean energy company based in Palo Alto, California.",
+            user_id: 1
+        }
+    ]
+
+    
 }
