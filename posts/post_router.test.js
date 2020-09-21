@@ -7,7 +7,7 @@ const db =require('../database/connection')
 describe('api/posts', ()=> {
     //get all post
     describe('GET /', ()=> {
-        it('should return status 200 when the call is successful', async()=>{
+        it('should return status 200, when the call is successful', async()=>{
             const res = await supertest(server)
             .get('/api/posts')
             expect(res.status).toBe(200)
