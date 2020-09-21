@@ -1,9 +1,11 @@
 const bcryptjs = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const tokenSecret = process.env.JWT_SECRET || "is it secret, is it safe?"
 module.exports = {
     hashing,
     errorHandler,
-    makeJwt
+    makeJwt,
+    restricted
 }
 
 // hashing function
@@ -25,7 +27,7 @@ function makeJwt({ id, username}) {
          id
     };
     const config = {
-        jwtSecret: process.env.JWT_SECRET || "is it secret, is it safe?",
+        jwtSecret: tokenSecret,
     };
     const options = {
         expiresIn: "8 hours",
@@ -33,3 +35,23 @@ function makeJwt({ id, username}) {
   
     return jwt.sign(payload, config.jwtSecret, options);
   }
+
+
+   function restricted (req, res, next){
+    const token = req.headers.authorization;
+    const secret = tokenSecret;
+
+    if (token) {
+        jwt.verify(token, secret, (err, decodedToken) => {
+            if (err) {
+                res.status(401).json({ message: "Not Allowed" });
+            } else {
+                req.jwt = decodedToken;
+
+                next();
+            }
+        });
+    } else {
+        res.status(401).json({ message: "No token!" });
+    }
+}

@@ -1,18 +1,18 @@
 const router = require('express').Router()
 const User = require('./user_moduel')
 const Post =require('../posts/post_module')
-const {hashing, errorHandler, makeJwt} = require('./users_helper')
+const {hashing, errorHandler, makeJwt, restricted} = require('./users_helper')
 const bcryptjs = require('bcryptjs')
 
 //get all users
-router.get('/', (req, res) => {
+router.get('/', restricted, (req, res) => {
     User.find()
     .then(allUsers => res.status(200).json({data: allUsers}))
     .catch(error =>  errorHandler(error, res))
 })
 
 // get user by id
-router.get('/:id', (req, res) => {
+router.get('/:id', restricted, (req, res) => {
     const {id} = req.params
     User.findById(id)
     .then(user => res.status(200).json({data: user}))
@@ -20,7 +20,7 @@ router.get('/:id', (req, res) => {
 })
 
 // remove user from the databse
-router.delete('/:id', (req, res) => {
+router.delete('/:id', restricted, (req, res) => {
     const {id} = req.params
     User.remove(id)
     .then(number => res.status(200).json({data: {deleteMessage: `you have deleted ${number} User/Users`}}))
@@ -28,7 +28,7 @@ router.delete('/:id', (req, res) => {
 })
 
 // updating user's information
-router.put('/:id', (req, res) => {
+router.put('/:id', restricted, (req, res) => {
     const {id} = req.params
     const userInfo = req.body
     User.update(userInfo, id)
@@ -81,8 +81,20 @@ router.get('/:id/posts', (req, res) => {
 })
 
 
-
-
+// serching users posts 
+router.get('/:id/postSearch', (req, res) => {
+    const {id} = req.params 
+    const {post_title} = req.body
+    User.findById(id)
+    .then(user => {
+        Post.findBy({user_id: id, post_title })
+       
+        .then(posts => {
+            res.status(200).json({data: posts})
+        })
+    })
+    .catch(error =>  errorHandler(error, res))
+})
 
 
 

@@ -47,19 +47,3 @@ function update(updating, id) {
     .then(()=> findById(id))
 }
 
-// // get a user posts  using user Id
-// function findUserPosts (id) {
-//     return find()
-//       .select(
-//         "post.id",
-//         "post.post_title",
-//         "post.post_content",
-//         "post.user_id",
-//         "user.username"
-//       )
-//       .join("user", function() {
-//         this.on({ "user.id": "post.user_id" });
-//       })
-//       .orderBy("post.id")
-//       .where({ "user.id": id });
-//   }
