@@ -68,13 +68,21 @@ Post request to login a user
 }
 
 
-**Returns: token**
+**Returns: Username, Password, email and authentication token**
 
 
 {
 
 
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWQiOjEsImlhdCI6MTYwMDY1Njg3MSwiZXhwIjoxNjAwNjg1NjcxfQ.GLJtwuNNUSBqrTBN1ybgRC5iUoa_4RX-EhDrVnRbIvU"
+    data: {
+        id: 4,
+        username: "user1",
+        password: "$2a$04$/vgskWcpO5ddHNiYHLeVvufd2YihmlYqYqbMtwf.ArMSd3mNqvL6a",
+        email: "user111@gmail.com"
+    },
+
+
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNhbWkyIiwiaWQiOjQsImlhdCI6MTYwMDY1NjMyNCwiZXhwIjoxNjAwNjg1MTI0fQ.JJXi_W3tli10y59v8lh1FvpCdubbFn6PtPRLMJshjvg"
 
 
 }
