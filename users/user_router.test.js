@@ -31,7 +31,7 @@ describe('/api/users',()=>{
     // })
 
     describe(' POST /login', ()=>{
-        it("should return 201 when passed correct data", async () => {
+        it("should return 201, when passed correct data", async () => {
             const res = await supertest(server)
                 .post("/api/users/login")
                 .send({username: 'user1', password: 'pass123'})
