@@ -1,11 +1,13 @@
 const bcryptjs = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const User = require('./user_moduel')
 const tokenSecret = process.env.JWT_SECRET || "is it secret, is it safe?"
 module.exports = {
     hashing,
     errorHandler,
     makeJwt,
-    restricted
+    restricted,
+    usernameValidation
 }
 
 // hashing function
@@ -54,4 +56,19 @@ function makeJwt({ id, username}) {
     } else {
         res.status(401).json({ message: "No token!" });
     }
+}
+
+
+// username validation middleware
+function usernameValidation (req, res, next){
+    const {username} = req.body
+    User.findBy({username})
+    .then(([ok]) => {
+        if(!ok) {
+            next()
+        } else { res.status(400).json({ message: "The username already exists. Please use a different username" })}
+    })
+    .catch(error =>  errorHandler(error, res))
+
+
 }

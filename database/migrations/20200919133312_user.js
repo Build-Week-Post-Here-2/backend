@@ -13,7 +13,6 @@ exports.up = function(knex) {
 
         tbl.string("email", 128)
           .notNullable()
-          .unique();
       })
 };
 
