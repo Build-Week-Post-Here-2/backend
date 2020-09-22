@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const User = require('./user_moduel')
 const Post =require('../posts/post_module')
-const {hashing, errorHandler, makeJwt, restricted} = require('./users_helper')
+const {hashing, errorHandler, makeJwt, restricted, usernameValidation} = require('./users_helper')
 const bcryptjs = require('bcryptjs')
 
 //get all users
@@ -37,7 +37,7 @@ router.put('/:id', restricted, (req, res) => {
 })
 
 // register a new user to the user table
-router.post('/register', (req, res) => {
+router.post('/register', usernameValidation, (req, res) => {
     let userInfo = req.body
     const hashedPassword = hashing(userInfo.password)
     userInfo.password = hashedPassword

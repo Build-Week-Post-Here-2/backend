@@ -13,7 +13,7 @@ base URL: https://reddit-sami.herokuapp.com
 Post request to make a new user
 
 **Requires:** Username , Password, and Email.
- Username and Email must be unique.
+ Username must be unique.
  Username , Password, and Email must be string
 
 **Post request example:** 
