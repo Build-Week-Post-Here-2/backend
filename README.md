@@ -330,7 +330,7 @@ Post request search for a post
 # Post DS predictions
 
 **POST DS predictions**
-**[https://reddit-post-predictor.herokuapp.com/predict]**
+**[https://reddit-sami.herokuapp.com/api/posts/prediction]**
 
 Post request to receive the DS predictions
 **Requires:** post_title, post_content, Image, Video, External_link OR the creat post API call result
@@ -360,5 +360,5 @@ Post request to receive the DS predictions
 
     prediction: "techsupport, sysadmin, history, explainlikeimfive, buildapc"
 
-    
+
 }

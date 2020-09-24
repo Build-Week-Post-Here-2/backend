@@ -2,7 +2,7 @@ const router = require('express').Router()
 const Post = require('./post_module')
 const {errorHandler} = require('../users/users_helper')
 const axios = require('axios')
-const { default: Axios } = require('axios')
+
 
 
 // get all  posts
@@ -46,6 +46,21 @@ router.delete('/:id', (req, res) => {
     .then((number) => res.status(200).json({data: {deleteMessage: `you have deleted ${number} Post/Posts`}}))
     .catch(error =>  errorHandler(error, res))
 } )
+
+
+//DS predictions
+router.post('/prediction', (req, res) => {
+    const DSPost = req.body
+  
+    axios
+      .post('https://reddit-post-predictor.herokuapp.com/predict', DSPost)
+      .then(response => {
+        res.status(200).json(response.data);
+      })
+      .catch(err => {
+        res.status(500).json({ message: 'Error Fetching Jokes', error: err });
+      });
+  });
 
 
 
