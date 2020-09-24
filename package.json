@@ -7,7 +7,7 @@
     "test": "jest --watch",
     "server": "nodemon index.js",
     "back": "knex migrate:rollback",
-    "next":"knex migrate:latest",
+    "next": "knex migrate:latest",
     "start": " node index.js"
   },
   "repository": {
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/Build-Week-Post-Here-2/backend#readme",
   "dependencies": {
+    "axios": "^0.20.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",

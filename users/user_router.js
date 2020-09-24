@@ -4,6 +4,7 @@ const Post =require('../posts/post_module')
 const {hashing, errorHandler, makeJwt, restricted, usernameValidation} = require('./users_helper')
 const bcryptjs = require('bcryptjs')
 
+
 //get all users
 router.get('/', restricted, (req, res) => {
     User.find()

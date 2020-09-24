@@ -180,6 +180,10 @@ Post request to make a new post
     id: 4,
     post_title: "my new post",
     post_content: "nice post",
+    Image: 0,
+    Video: 0,
+    External_link: 0,
+    Subreddits: "No predictions",
     user_id: 1
     }
 
@@ -216,6 +220,10 @@ Put request to update post information
     id: 4,
     post_title: "updating title",
     post_content: "nice update",
+    Image: 0,
+    Video: 0,
+    External_link: 0,
+    Subreddits: "No predictions",
     user_id: 1
     }
 
@@ -316,4 +324,41 @@ Post request search for a post
     ]
 
     
+}
+
+
+# Post DS predictions
+
+**POST DS predictions**
+**[https://reddit-sami.herokuapp.com/api/posts/prediction]**
+
+Post request to receive the DS predictions
+**Requires:** post_title, post_content, Image, Video, External_link OR the creat post API call result
+
+**Post request example:** 
+
+{
+
+
+        
+        post_title: new post,
+        post_content: very good post,
+        Image: 0,
+        Video: 0,
+        External_link: 0
+        
+        
+
+
+}
+
+
+**Returns:  DS predictions in form of a string**
+
+{
+
+
+    prediction: "techsupport, sysadmin, history, explainlikeimfive, buildapc"
+
+
 }
