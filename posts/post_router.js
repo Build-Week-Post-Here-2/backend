@@ -1,6 +1,8 @@
 const router = require('express').Router()
 const Post = require('./post_module')
 const {errorHandler} = require('../users/users_helper')
+const axios = require('axios')
+const { default: Axios } = require('axios')
 
 
 // get all  posts
@@ -18,7 +20,9 @@ router.get('/:id', (req, res) => {
     .catch(error =>  errorHandler(error, res))
 })
 
-// add a post 
+
+
+//add a post 
 router.post('/', (req, res) => {
     const newPost = req.body
     Post.add(newPost)
