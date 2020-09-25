@@ -53,7 +53,7 @@ router.post('/prediction', (req, res) => {
     const DSPost = req.body
   
     axios
-      .post('https://reddit-post-predictor.herokuapp.com/predict', DSPost)
+      .post('https://reddit-post-prediction.herokuapp.com/predict', DSPost)
       .then(response => {
         res.status(200).json(response.data);
       })
